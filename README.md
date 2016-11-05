@@ -12,6 +12,7 @@ More: https://tip.golang.org/pkg/plugin/
 
 ```
 go build -buildmode=plugin printer.go
+go build -buildmode=plugin processor.go
 ```
 
 ### Test

@@ -1,16 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"plugin"
-	"reflect"
 
 	"github.com/mateuszdyminski/go-plugin/printer"
 	"github.com/mateuszdyminski/go-plugin/processor"
 )
 
 func main() {
-	lib, err := plugin.Open("printer.so")
+	lib, err := plugin.Open("printer-impl/printer.so")
 	if err != nil {
 		panic(err)
 	}
@@ -22,13 +20,12 @@ func main() {
 
 	printerImpl, ok := p.(*printer.Printer)
 	if !ok {
-		fmt.Printf("wrong type: %+v \n", reflect.TypeOf(p))
 		panic("wrong type")
 	}
 
 	(*printerImpl).Print("test")
 
-	lib2, err := plugin.Open("processor.so")
+	lib2, err := plugin.Open("processor-impl/processor.so")
 	if err != nil {
 		panic(err)
 	}
@@ -40,10 +37,8 @@ func main() {
 
 	processorImpl, ok := p2.(*processor.Processor)
 	if !ok {
-		fmt.Printf("wrong type: %+v \n", reflect.TypeOf(p))
 		panic("wrong type")
 	}
 
 	(*processorImpl).Process("test")
-
 }

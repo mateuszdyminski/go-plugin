@@ -11,8 +11,8 @@ More: https://tip.golang.org/pkg/plugin/
 ### Build to library
 
 ```
-go build -buildmode=plugin printer.go
-go build -buildmode=plugin processor.go
+cd printer-impl && go build -buildmode=plugin printer.go
+cd processor-impl && go build -buildmode=plugin processor.go
 ```
 
 ### Test
